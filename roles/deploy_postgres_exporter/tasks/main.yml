@@ -1,0 +1,24 @@
+---
+# tasks file for deploy_postgres_exporter
+- block:
+  - name: Перенос файла postgres exporter
+    copy:
+      src: postgres_exporter
+      dest: '{{file_destin}}'
+      owner: postgres
+      group: postgres
+      mode: '0755'
+
+  - name: Перенос файла service
+    copy:
+      src: postgres_exporter.service
+      dest: '{{service_destin}}'
+ 
+  - name: Запуск службы postgres exporter
+    systemd:
+      state: started
+      enabled: yes
+      name: postgres_exporter
+      daemon_reload: yes
+   
+  when: host_vm == 'DB'

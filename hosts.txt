@@ -1,0 +1,16 @@
+[system_servers]
+system-server-01              ansible_host:127.0.0.1
+
+[front_servers]
+front-server-01               ansible_host=127.0.0.1
+
+[db_post_servers]
+db-post-server-01             ansible_host=127.0.0.1
+
+[db_servers:children]
+db_post_servers
+
+[all_servers:children]
+front_servers
+system_servers
+db_servers

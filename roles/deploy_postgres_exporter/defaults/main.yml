@@ -1,0 +1,4 @@
+---
+# defaults file for deploy_postgres_exporter
+file_destin: /usr/local/bin/
+service_destin: /etc/systemd/system/

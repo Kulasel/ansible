@@ -1,0 +1,8 @@
+---
+- name: Установка exporter
+  hosts: all
+  become: yes
+  roles: 
+    - deploy_node_exporter
+    - deploy_postgres_exporter
+  

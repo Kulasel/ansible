@@ -1,0 +1,26 @@
+---
+# tasks file for deploy_node_exporter
+- name: Создания пользователя
+  user:
+    name: node_exporter
+    system: true
+    shell: /bin/false
+
+- name: Перенос файла node exporter
+  copy:
+    src: node_exporter
+    dest: '{{file_destin}}'
+    owner: node_exporter
+    mode: '0755'
+
+- name: Перенос файла service
+  copy:
+    src: node_exporter.service
+    dest: '{{service_destin}}'
+ 
+- name: Запуск службы node_exporter
+  systemd:
+    state: started
+    enabled: yes
+    name: node_exporter
+    daemon_reload: yes
